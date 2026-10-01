@@ -1,0 +1,11 @@
+<section class="region-container">
+  <h2>{{ currentRegion() | titlecase }} Region</h2>
+
+  <div class="grid">
+    @for (pokemon of pokemonList(); track pokemon.id) {
+      <div>
+        <app-pokemon-card [pokemon]="pokemon"></app-pokemon-card>
+      </div>
+    }
+  </div>
+</section>

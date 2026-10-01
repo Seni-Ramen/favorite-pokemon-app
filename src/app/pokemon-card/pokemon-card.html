@@ -1,0 +1,13 @@
+<div class="card">
+  <button type="button" class="pokemon-image-button" [routerLink]="['/pokemon', pokemon().id]" [attr.aria-label]="'View ' + pokemon().name + ' evolution'">
+    <img class="sprite" [src]="pokemon().imageUrl" [alt]="pokemon().name" />
+  </button>
+
+  <div class="details">
+    <p class="number">#{{ pokemon().id }}</p>
+    <h3 class="name">{{ pokemon().name }}</h3>
+    <p class="type">Type: {{ pokemon().type }}</p>
+    <p class="held-item">Held Item: {{ pokemon().heldItem }}</p>
+    <p class="description">{{ pokemon().description }}</p>
+  </div>
+</div>

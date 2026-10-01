@@ -1,0 +1,44 @@
+<section class="detail-page">
+  @if (pokemon(); as selected) {
+    <div class="detail-card">
+      <div class="detail-header">
+        <img [src]="selected.imageUrl" [alt]="selected.name" class="detail-image" />
+        <div>
+          <p class="detail-number">#{{ selected.id }}</p>
+          <h2>{{ selected.name }}</h2>
+          <p>{{ selected.type }}</p>
+        </div>
+      </div>
+
+      <div class="detail-info">
+        <p><strong>Held Item:</strong> {{ selected.heldItem }}</p>
+        <p>{{ selected.description }}</p>
+      </div>
+
+      <div class="evolution-section">
+        <h3>Evolution Flow</h3>
+        <div class="evolution-chain">
+          @for (path of evolutionPaths(); track $index) {
+            <div class="evolution-path">
+              @for (stage of path; let last = $last; track stage.id) {
+                <div class="evolution-stage">
+                  <img [src]="stage.imageUrl" [alt]="stage.name" />
+                  <span>{{ stage.name }}</span>
+                </div>
+                @if (!last) {
+                  <span class="evolution-arrow" aria-hidden="true">→</span>
+                }
+              }
+            </div>
+          }
+        </div>
+      </div>
+
+      <div class="detail-actions">
+        <a routerLink="/kanto" class="back-link">Back to region</a>
+      </div>
+    </div>
+  } @else {
+    <p>Pokémon not found.</p>
+  }
+</section>

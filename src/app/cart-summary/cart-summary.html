@@ -1,0 +1,28 @@
+<div class="cart-summary">
+  <h3>Shopping Cart ({{ totalCount() }} items)</h3>
+
+  @if (cart().length === 0) {
+    <p>📦 Your cart is empty.</p>
+  } @else {
+    @for (entry of cart(); track entry.item.id) {
+      <div class="cart-row">
+        <div class="cart-item-main">
+          <img class="cart-item-image" [src]="entry.item.imageUrl" [alt]="entry.item.name" />
+          <span>🔹 {{ entry.item.name }} x{{ entry.quantity }}</span>
+        </div>
+        <div class="cart-item-actions">
+          <p>💰 {{ entry.item.cost * entry.quantity }} ₽</p>
+          <button type="button" (click)="removeItem.emit(entry.item.id)">
+            🗑️ Remove
+          </button>
+        </div>
+      </div>
+    }
+
+    <p>Total Due: <strong>💰 {{ total() }} ₽</strong></p>
+
+    <button type="button" (click)="clearCart.emit()">
+      ❌ Clear Cart
+    </button>
+  }
+</div>

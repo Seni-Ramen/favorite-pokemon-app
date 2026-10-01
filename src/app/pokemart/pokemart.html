@@ -1,0 +1,39 @@
+<section class="shop-layout">
+  <div class="shop-header">
+    <div class="clerk-badge">
+      <img
+        src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png"
+        alt="Pokémon clerk"
+      />
+    </div>
+    <div class="shop-title">
+      <h2>Poké Mart</h2>
+      <p>Welcome, trainer!</p>
+    </div>
+  </div>
+
+  <app-cart-summary
+    class="shop-cart"
+    [cart]="cart()"
+    [total]="totalCost()"
+    [totalCount]="totalCount()"
+    (removeItem)="onRemove($event)"
+    (clearCart)="onClear()">
+  </app-cart-summary>
+
+  <div class="shop-list">
+    @for (item of items(); track item.id) {
+      <article class="shop-item">
+        <img class="item-image" [src]="item.imageUrl" [alt]="item.name" />
+        <h3>{{ item.name }}</h3>
+        <p class="category">{{ item.category }}</p>
+        <p class="description">{{ item.description }}</p>
+        <p class="price">💰 {{ item.cost }} ₽</p>
+
+        <button type="button" (click)="onAdd(item)">
+          🛒 Add to Cart
+        </button>
+      </article>
+    }
+  </div>
+</section>
